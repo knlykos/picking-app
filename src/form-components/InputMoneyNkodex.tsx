@@ -1,6 +1,7 @@
 import { FormEvent } from "react";
+import CurrencyInput from "react-currency-input-field";
 
-function InputNkodex({
+function InputMoneyNkodex({
   input,
   onChange,
   placeholder,
@@ -11,8 +12,12 @@ function InputNkodex({
   placeholder: string;
   label: string;
 }) {
-  function handleChange(e: FormEvent<HTMLInputElement>) {
-    onChange(e.currentTarget.value);
+  function handleChange(e: any, data: any) {
+    console.log(e);
+    //   console.log(data);
+    let value = e;
+
+    onChange(e);
   }
   return (
     <>
@@ -24,18 +29,27 @@ function InputNkodex({
           {/* <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <span className="text-gray-500 sm:text-sm">$</span>
           </div> */}
-          <input
+          {/* <input
             type="text"
             id="price"
-            className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-3 pr-3 sm:text-sm border-gray-300 rounded-md text-left"
+            className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-3 sm:text-sm border-gray-300 rounded-md text-left"
             placeholder={placeholder}
             value={input}
             onChange={handleChange}
-          />
+          /> */}
+          <CurrencyInput
+            decimalScale={2}
+            fixedDecimalLength={2}
+            decimalsLimit={2}
+            prefix="$ "
+            className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-3 sm:text-sm border-gray-300 rounded-md text-right"
+            onValueChange={handleChange}
+            value={input}
+          ></CurrencyInput>
           <div className="absolute inset-y-0 right-0 flex items-center">
-            <label htmlFor="currency" className="sr-only">
+            {/* <label htmlFor="currency" className="sr-only">
               Currency
-            </label>
+            </label> */}
             {/* <select
             id="currency"
             name="currency"
@@ -51,4 +65,4 @@ function InputNkodex({
     </>
   );
 }
-export default InputNkodex;
+export default InputMoneyNkodex;

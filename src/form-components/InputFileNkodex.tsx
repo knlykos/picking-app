@@ -1,18 +1,22 @@
+import axios from "axios";
 import { FormEvent } from "react";
 
-function InputNkodex({
+function InputFileNkodex({
   input,
   onChange,
   placeholder,
   label,
 }: {
   input: string | undefined | number;
-  onChange: (s: string) => void;
+  onChange: (name: string, f: FileList | null) => void;
   placeholder: string;
   label: string;
 }) {
   function handleChange(e: FormEvent<HTMLInputElement>) {
-    onChange(e.currentTarget.value);
+    let fileName = e.currentTarget.value;
+    let file = e.currentTarget.files;
+    
+    onChange(fileName, file);
   }
   return (
     <>
@@ -25,8 +29,7 @@ function InputNkodex({
             <span className="text-gray-500 sm:text-sm">$</span>
           </div> */}
           <input
-            type="text"
-            id="price"
+            type="file"
             className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-3 pr-3 sm:text-sm border-gray-300 rounded-md text-left"
             placeholder={placeholder}
             value={input}
@@ -51,4 +54,4 @@ function InputNkodex({
     </>
   );
 }
-export default InputNkodex;
+export default InputFileNkodex;
