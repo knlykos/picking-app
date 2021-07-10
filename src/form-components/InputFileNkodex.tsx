@@ -1,23 +1,37 @@
 import axios from "axios";
-import { FormEvent } from "react";
+import { FormEvent, RefObject } from "react";
 
 function InputFileNkodex({
   input,
   onChange,
   placeholder,
   label,
+  imgRef,
 }: {
   input: string | undefined | number;
   onChange: (name: string, f: FileList | null) => void;
   placeholder: string;
   label: string;
+  imgRef?: React.RefObject<HTMLImageElement>;
 }) {
   function handleChange(e: FormEvent<HTMLInputElement>) {
     let fileName = e.currentTarget.value;
     let file = e.currentTarget.files;
-    
+    console.log(file);
+    let reader = new FileReader();
+    let url: void;
+    let fileRead = file?.item(0);
+    url = reader.readAsDataURL(fileRead as File);
+    reader.onloadend = (e) => {
+      if (imgRef !== undefined) {
+        if (imgRef?.current !== null) {
+          imgRef.current.src = (reader.result as string) ?? null;
+        }
+      }
+    };
     onChange(fileName, file);
   }
+
   return (
     <>
       <div>
