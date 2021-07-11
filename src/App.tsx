@@ -7,6 +7,8 @@ import Navbar from "./main/navbar/Navbar";
 import ProductsList from "./inventory/products/products/ProductsList";
 import ProductEdit from "./inventory/products/products/ProductEdit";
 import ProductCreate from "./inventory/products/products/ProductCreate";
+import SaleOrderList from "./sales/sale-order/saleOrderList";
+import SaleOrderCreate from "./sales/sale-order/saleOrderCreate";
 function App() {
   return (
     <div>
@@ -32,6 +34,16 @@ function App() {
             path="/products/edit/:id"
             exact
             render={() => <ProductEdit></ProductEdit>}
+          ></Route>
+          <Route
+            path="/sale-orders"
+            exact
+            render={() => <SaleOrderList></SaleOrderList>}
+          ></Route>
+          <Route
+            path="/sale-orders/new"
+            exact
+            render={() => <SaleOrderCreate></SaleOrderCreate>}
           ></Route>
         </Switch>
       </Router>

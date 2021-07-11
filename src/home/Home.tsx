@@ -6,6 +6,9 @@ function Home() {
       <div>
         <Link to="products">Products</Link>
       </div>
+      <div>
+        <Link to="sale-orders/new">Sale Orders</Link>
+      </div>
     </>
   );
 }
