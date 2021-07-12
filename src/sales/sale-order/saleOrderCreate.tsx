@@ -1,6 +1,7 @@
 import { useState } from "react";
 import DatePicker from "react-date-picker";
 import InputNkodex from "../../form-components/InputNkodex";
+import OrderLineNkodex from "../../form-components/OrderLineNkodex";
 import { Partner } from "../../models/partner.model";
 import { SaleOrder } from "../../models/sale-order.model";
 
@@ -80,6 +81,9 @@ function SaleOrderCreate() {
           placeholder="Email"
           label="Email"
         ></InputNkodex>
+      </div>
+      <div>
+          <OrderLineNkodex></OrderLineNkodex>
       </div>
       <div>Date: {saleOrder.orderDate.toString()}</div>
 
